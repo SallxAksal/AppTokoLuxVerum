@@ -29,4 +29,7 @@ Route::middleware([\App\Http\Middleware\AdminAuth::class])->group(function () {
     Route::get('/products/{id}/edit', [DashboardController::class, 'edit'])->name('product.edit');
     Route::put('/products/{id}', [DashboardController::class, 'update'])->name('product.update');
     Route::delete('/products/{id}', [DashboardController::class, 'destroy'])->name('product.destroy');
+
+    // New route for product listing
+    Route::get('/products', [DashboardController::class, 'list'])->name('product.list');
 });

@@ -1,11 +1,239 @@
-@import 'tailwindcss';
+/* Modern CSS with red, black, and white color scheme */
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff; /* white background */
+    color: #1a1a1a; /* dark text */
+    margin: 0;
+    padding: 0;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+h1, h2, h3, h4, h5, h6 {
+    color: #b30000; /* strong red for headings */
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #b30000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover, a:focus {
+    color: #660000; /* darker red on hover */
+    outline: none;
+}
+
+button, .button {
+    background-color: #b30000; /* red background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+button:hover, .button:hover {
+    background-color: #660000; /* darker red on hover */
+}
+
+button:focus, .button:focus {
+    outline: 3px solid #ff6666; /* light red focus ring */
+    outline-offset: 2px;
+}
+
+input[type="text"], input[type="password"], input[type="url"], input[type="number"], textarea {
+    border: 2px solid #b30000;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="url"]:focus, input[type="number"]:focus, textarea:focus {
+    border-color: #660000;
+    outline: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid #d6e9c6;
+}
+
+.alert-error {
+    background-color: #f2dede;
+    color: #a94442;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid #ebccd1;
+}
+
+/* Sidebar styles */
+body {
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.sidebar {
+    background-color: #b30000;
+    color: white;
+    width: 220px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 1rem;
+}
+
+.sidebar nav ul li a, .sidebar nav ul li form button {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.sidebar nav ul li a:hover, .sidebar nav ul li form button:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Card styles for product dashboard */
+
+.product-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.product-card {
+    background-color: white;
+    border: 1px solid #b30000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(179, 0, 0, 0.2);
+    width: 280px;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 16px rgba(179, 0, 0, 0.4);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    margin: 0 0 10px 0;
+    color: #b30000;
+    font-weight: 700;
+    text-align: center;
+}
+
+.product-card p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    color: #333;
+    text-align: center;
+}
+
+.product-card .price {
+    font-weight: 700;
+    color: #660000;
+    margin: 10px 0;
+}
+
+.product-card .actions {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.product-card .actions a,
+.product-card .actions form button {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+.product-card .actions a {
+    background-color: #b30000;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card .actions a:hover {
+    background-color: #660000;
+}
+
+.product-card .actions form button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card .actions form button:hover {
+    background-color: #a71d2a;
 }

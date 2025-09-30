@@ -10,13 +10,19 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // Middleware handled in routes
     }
 
     public function index()
     {
+        // Dashboard simplified to show date/time only
+        return view('dashboard');
+    }
+
+    public function list()
+    {
         $products = Product::all();
-        return view('dashboard', compact('products'));
+        return view('product-list', compact('products'));
     }
 
     public function create()
@@ -37,7 +43,7 @@ class DashboardController extends Controller
             'link_tiktok_shop' => 'nullable|url',
         ]);
 
-        $data = $request->all();
+        $data = $request->only(['nama', 'tipe', 'ukuran', 'harga', 'gambar', 'deskripsi', 'link_shopee', 'link_tiktok_shop']);
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('products', 'public');
         }
@@ -66,7 +72,7 @@ class DashboardController extends Controller
         ]);
 
         $product = Product::findOrFail($id);
-        $data = $request->all();
+        $data = $request->only(['nama', 'tipe', 'ukuran', 'harga', 'gambar', 'deskripsi', 'link_shopee', 'link_tiktok_shop']);
         if ($request->hasFile('gambar')) {
             if ($product->gambar) {
                 Storage::disk('public')->delete($product->gambar);
