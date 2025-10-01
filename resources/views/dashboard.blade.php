@@ -5,7 +5,7 @@
 @section('content')
     <h1>Dashboard</h1>
     <div id="datetime" style="font-size: 1.5rem; font-weight: 600; color: #b30000;"></div>
-
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <script>
         function updateDateTime() {
             const now = new Date();

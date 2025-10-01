@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Website Resmi LuxVerum</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fdfdfc;
-            color: #1b1b18;
+            background: linear-gradient(135deg, #b30000, #000000, #ffffff);
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,12 +24,22 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            background-color: #b30000;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #7a0000;
         }
         #owner-question {
             margin-top: 20px;
             display: none;
             flex-direction: column;
             gap: 10px;
+            align-items: center;
+            text-align: center;
         }
         #owner-question button {
             width: 200px;
@@ -36,6 +47,7 @@
     </style>
 </head>
 <body>
+    <img src="image/LX-luxverum.png" alt="" style="max-width: 200px; height: auto; border-radius: 50%; box-shadow: 0 0 20px rgba(0,0,0,0.5); margin-bottom: 20px;">
     <h1>Website Resmi LuxVerum</h1>
     <button id="btn-masuk">Masuk</button>
     <div id="owner-question">

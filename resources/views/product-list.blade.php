@@ -4,6 +4,7 @@
 
 @section('content')
     <h1>Daftar Produk</h1>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <a href="{{ route('product.create') }}" class="button" style="margin-bottom: 20px;">Tambah Produk Baru</a>
     <table>
         <thead>
