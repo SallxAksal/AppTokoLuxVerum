@@ -1,0 +1,321 @@
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #b30000;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+    color: #b30000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover, a:focus {
+    color: #660000;
+    outline: none;
+}
+
+/* Buttons */
+button, .button {
+    background-color: #b30000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+button:hover, .button:hover {
+    background-color: #660000;
+}
+button:focus, .button:focus {
+    outline: 3px solid #ff6666;
+    outline-offset: 2px;
+}
+
+/* Inputs */
+input[type="text"], input[type="password"], input[type="url"], 
+input[type="number"], textarea {
+    border: 2px solid #b30000;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+}
+input:focus, textarea:focus {
+    border-color: #660000;
+    outline: none;
+}
+
+/* Alerts */
+.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid #d6e9c6;
+}
+.alert-error {
+    background-color: #f2dede;
+    color: #a94442;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid #ebccd1;
+}
+
+/* Sidebar */
+.sidebar {
+    background: linear-gradient(135deg, #8b0000, #000000, #4d4d4d);
+    color: white;
+    width: 220px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-right: 2px solid #8b0000;
+}
+.sidebar nav ul li a,
+.sidebar nav ul li form button {
+    color: #f0f0f0;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 4px;
+}
+.sidebar nav ul li a:hover,
+.sidebar nav ul li form button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+}
+.sidebar nav ul li a:active,
+.sidebar nav ul li form button:active {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(0.95) rotate(-2deg);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+.sidebar nav ul li a:focus,
+.sidebar nav ul li form button:focus {
+    outline: 2px solid #b30000;
+    outline-offset: 2px;
+}
+.sidebar nav ul li a.active {
+    background-color: #b30000;
+    color: white;
+}
+.sidebar nav ul li form button.logout-button {
+    background-color: #b30000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+.sidebar nav ul li form button.logout-button:hover {
+    background-color: #7a0000;
+}
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar nav ul li {
+    margin-bottom: 1rem;
+}
+.sidebar nav ul li a,
+.sidebar nav ul li form button {
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 4px;
+}
+.sidebar nav ul li a:hover,
+.sidebar nav ul li form button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+.sidebar nav ul li a:active,
+.sidebar nav ul li form button:active {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0.95) rotate(-3deg);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    margin-left: 220px;
+}
+
+/* Product cards */
+.product-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+.product-card {
+    background-color: white;
+    border: 1px solid #b30000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(179, 0, 0, 0.2);
+    width: 280px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+}
+.product-card:hover {
+    box-shadow: 0 8px 16px rgba(179, 0, 0, 0.4);
+}
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.product-card h3 {
+    margin: 0 0 10px 0;
+    color: #b30000;
+    text-align: center;
+}
+.product-card p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    color: #333;
+    text-align: center;
+}
+.product-card .price {
+    font-weight: 700;
+    color: #660000;
+    margin: 10px 0;
+}
+.product-card .actions {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+}
+.product-card .actions a,
+.product-card .actions form button {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+.product-card .actions a {
+    background-color: #b30000;
+    color: white;
+}
+.product-card .actions a:hover {
+    background-color: #660000;
+}
+.product-card .actions form button {
+    background-color: #dc3545;
+    color: white;
+}
+.product-card .actions form button:hover {
+    background-color: #a71d2a;
+}
+
+/* Dashboard Statistik Cards */
+.dashboard-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.dashboard-stats .stat-card {
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1 1 200px;
+    box-shadow: 0 4px 10px rgba(179, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+}
+.dashboard-stats .stat-card:hover {
+    box-shadow: 0 8px 20px rgba(179, 0, 0, 0.8);
+}
+.dashboard-stats .stat-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #b30000;
+}
+.dashboard-stats .stat-card p {
+    margin: 5px 0 0 0;
+    font-size: 1.1rem;
+    color: white;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -70px;
+}
+.dashboard-header h1 {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 5.5rem;
+    color: #000000;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+.digital-clock-container {
+    display: inline-block;
+    background: linear-gradient(135deg, #000000, #000000);
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.5rem;
+    padding: 15px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(85, 85, 85, 0.7);
+    user-select: none;
+    letter-spacing: 2px;
+    font-weight: 700;
+}

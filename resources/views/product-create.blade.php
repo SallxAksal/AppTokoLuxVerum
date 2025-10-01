@@ -1,63 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tambah Produk - LuxVerum</title>
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fdfdfc;
-            color: #1b1b18;
-            margin: 0;
-            padding: 20px;
-        }
-        form {
-            max-width: 500px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="number"],
-        input[type="url"],
-        textarea {
-            padding: 8px;
-            font-size: 16px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-        }
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: blue;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Tambah Produk - LuxVerum')
+
+@section('content')
     <h1>Tambah Produk Baru</h1>
     @if ($errors->any())
-        <div class="error">
+        <div class="alert-error">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -94,5 +42,4 @@
         <button type="submit">Simpan</button>
     </form>
     <a href="{{ route('dashboard') }}">Kembali ke Dashboard</a>
-</body>
-</html>
+@endsection
