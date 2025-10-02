@@ -9,6 +9,9 @@
 </div>
 
 <style>
+    /* ----------------------------------------------------------------
+    * UMUM
+    * ---------------------------------------------------------------- */
     .dashboard-section {
         max-width: 1201px;
         margin: 20px auto;
@@ -18,19 +21,31 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
+    /* ----------------------------------------------------------------
+    * CARD PENGUNJUNG (Dashboard Cards) - Disesuaikan untuk lebar dan tinggi
+    * ---------------------------------------------------------------- */
     .dashboard-cards {
         display: flex;
         justify-content: space-between;
-        gap: 1px;
-        margin: 20px 0;
+        gap: 20px; /* Diubah dari 1px ke 20px agar ada jarak yang jelas */
+        margin: 20px auto;
         flex-wrap: wrap;
+        max-width: 1245px; /* Disesuaikan agar sama dengan dashboard-section */
     }
 
     .dashboard-card {
-        flex: 1;
-        min-width: 200px;
+        /* Lebar diatur agar 2 card dapat mengisi penuh, dikurangi gap */
+        flex: 1; /* Agar card memanjang untuk mengisi sisa ruang */ 
+
+        /* Penambahan untuk tinggi dan centering konten */
+        min-height: 200px; /* Memberi tinggi minimum agar tidak terlalu pendek */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Konten di tengah vertikal */
+        align-items: center; /* Konten di tengah horizontal */
+        
         background: white;
-        padding: 20px;
+        padding: 50px;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         text-align: center;
@@ -48,13 +63,22 @@
         color: #b30000;
     }
 
+    /* ----------------------------------------------------------------
+    * SLIDER PRODUK TERBARU (Latest Products) - Diubah menjadi Flexbox Slider
+    * ---------------------------------------------------------------- */
     .latest-products {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        display: flex; 
+        overflow-x: hidden; /* Sembunyikan horizontal scrollbar */
+        scroll-behavior: smooth; /* Untuk animasi geser yang mulus */
         gap: 20px;
+        padding: 10px 0;
     }
 
     .product-card {
+        /* Disesuaikan untuk menampilkan 4 produk per tampilan slider */
+        flex: 0 0 calc(25% - 15px); /* 25% lebar dikurangi sedikit untuk gap */
+        min-width: 250px; /* Minimal 250px agar resolusi gambar tetap baik */
+        
         border: 1.5px solid #b30000;
         border-radius: 10px;
         padding: 15px;
@@ -79,10 +103,11 @@
     .product-card h3 {
         margin: 0 0 8px 0;
         color: #ffffff;
-        background-color: #4e4e4e;
+        background-color: #ff1818;
         width: 100px;
         border-radius: 6px;
         font-size: 1.1rem;
+        display: inline-block; /* Agar width 100px bisa diterapkan */
     }
 
     .product-card .rating {
@@ -90,7 +115,30 @@
         font-size: 0.9rem;
         color: #ffffff;
     }
+    
+    /* Tombol Navigasi Slider */
+    .slider-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+    .slider-nav button {
+        padding: 10px 20px; 
+        background-color: #b30000; 
+        color: white; 
+        border: none; 
+        border-radius: 6px; 
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+    .slider-nav button:hover {
+        background-color: #800000;
+    }
 
+    /* ----------------------------------------------------------------
+    * TABEL RATING
+    * ---------------------------------------------------------------- */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -114,9 +162,13 @@
     }
 </style>
 
+{{-- =================================================================
+-- BAGIAN PRODUK TERBARU (SLIDER)
+-- ================================================================= --}}
 <div class="dashboard-section">
     <h2>Produk Terbaru</h2>
-    <div class="latest-products">
+    <div class="latest-products" id="productSlider">
+        {{-- Loop Produk --}}
         @foreach($latestProducts as $product)
         <div class="product-card">
             @if($product->gambar)
@@ -138,8 +190,19 @@
         </div>
         @endforeach
     </div>
+    
+    {{-- Tombol Navigasi Slider --}}
+    @if(count($latestProducts) > 4)
+    <div class="slider-nav">
+        <button id="slider-prev">&#8592; Sebelumnya</button>
+        <button id="slider-next">Selanjutnya &#8594;</button>
+    </div>
+    @endif
 </div>
 
+{{-- =================================================================
+-- BAGIAN KARTU PENGUNJUNG
+-- ================================================================= --}}
 <div class="dashboard-cards">
     <div class="dashboard-card">
         <h2>Jumlah Pengunjung</h2>
@@ -157,6 +220,9 @@
     </div>
 </div>
 
+{{-- =================================================================
+-- BAGIAN TABEL RATING PRODUK
+-- ================================================================= --}}
 <div class="dashboard-section">
     <h2>Rating Produk</h2>
     <table>
@@ -197,8 +263,10 @@
 </div>
 
 <script>
+    // FUNGSI JAM DIGITAL
     function updateClock() {
         const clockElement = document.getElementById('digitalClock');
+        if (!clockElement) return; // Pastikan elemen ada
         const now = new Date();
 
         const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
@@ -219,5 +287,32 @@
 
     setInterval(updateClock, 1000);
     updateClock();
+
+    // LOGIKA SLIDER PRODUK
+    const slider = document.getElementById('productSlider');
+    const prevButton = document.getElementById('slider-prev');
+    const nextButton = document.getElementById('slider-next');
+    
+    // Sesuaikan nilai scroll ini berdasarkan lebar kontainer dashboard-section (1201px)
+    // Nilai ini harus sama dengan lebar 4 product-card + 3 gap
+    const scrollAmount = 1240; 
+
+    if (nextButton && slider) {
+        nextButton.addEventListener('click', () => {
+            slider.scrollBy({
+                left: scrollAmount, 
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    if (prevButton && slider) {
+        prevButton.addEventListener('click', () => {
+            slider.scrollBy({
+                left: -scrollAmount, 
+                behavior: 'smooth'
+            });
+        });
+    }
 </script>
 @endsection
