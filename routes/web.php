@@ -33,3 +33,5 @@ Route::middleware([\App\Http\Middleware\AdminAuth::class])->group(function () {
     // New route for product listing
     Route::get('/products', [DashboardController::class, 'list'])->name('product.list');
 });
+
+Route::post('/rate-product', [DashboardController::class, 'rateProduct'])->name('rate.product');

@@ -9,13 +9,6 @@ body {
     min-height: 100vh;
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-    color: #b30000;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
 /* Links */
 a {
     color: #b30000;
