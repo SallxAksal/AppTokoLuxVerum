@@ -3,8 +3,10 @@
 @section('title', 'Tambah Produk - LuxVerum')
 
 @section('content')
-<img src="{{ asset('image/LX-luxverum.png') }}" alt="Logo LuxVerum" style="width:150px; height:auto;">
+    <img src="{{ asset('image/LX-luxverum.png') }}" alt="Logo LuxVerum" style="width:150px; height:auto; display:block; margin:0 auto 20px;">
+
     <h1>Tambah Produk Baru</h1>
+
     @if ($errors->any())
         <div class="alert-error">
             <ul>
@@ -14,126 +16,133 @@
             </ul>
         </div>
     @endif
+
     <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #ffffff;
-        margin: 0;
-        padding: 0;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1e1e1e;
+            margin: 0;
+            padding: 0;
+        }
 
-    h1 {
-        color: #b30000;
-        text-align: center;
-        margin-bottom: 25px;
-    }
+        h1 {
+            color: #ff3333;
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 0 0 6px rgba(255, 77, 77, 0.6);
+        }
 
-    form {
-        max-width: 900px;
-        margin: 30px auto;    padding: 25px 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        display: grid;
-        gap: 20px;
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .form-group label {
-        font-weight: bold;
-        margin-bottom: 6px;
-        color: #333;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        padding: 10px;
-        border: 1.5px solid #ff8383;
-        border-radius: 8px;
-        font-size: 15px;
-        transition: all 0.3s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        border-color: #b30000;
-        box-shadow: 0 0 6px rgba(179, 0, 0, 0.3);
-        outline: none;
-    }
-
-    textarea {
-        resize: vertical;
-        min-height: 100px;
-    }
-
-    button[type="submit"] {
-        background: #b30000;
-        color: #fff;
-        border: none;
-        padding: 14px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: background 0.3s ease;
-        grid-column: span 2;
-    }
-
-    button[type="submit"]:hover {
-        background: #8a0000;
-    }
-
-    .alert-error {
-        background: #ffe5e5;
-        border: 1px solid #ff9b9b;
-        color: #a10000;
-        padding: 12px;
-        border-radius: 8px;
-        grid-column: span 2;
-    }
-
-    a {
-        display: inline-block;
-        margin-top: 10px;
-        color: #b30000;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    img {
-        display: block;
-        margin: 20px auto;
-    }
-
-    /* Layout grid untuk desktop */
-    form {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .full-width {
-        grid-column: span 2;
-    }
-
-    /* Responsif untuk HP/tablet */
-    @media (max-width: 768px) {
         form {
-            grid-template-columns: 1fr;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px 30px;
+            border-radius: 16px;
+            background: #2a2a2a;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr 1fr;
         }
 
-        button[type="submit"],
-        .alert-error,
-        .full-width {
-            grid-column: span 1;
+        .form-group {
+            display: flex;
+            flex-direction: column;
         }
-    }
-</style>
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #fdfdfc;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px;
+            border: 1.5px solid #ff4d4d;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #333;
+            color: #fdfdfc;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #b30000;
+            box-shadow: 0 0 6px rgba(179, 0, 0, 0.5);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(145deg, #b30000, #800000);
+            color: #fff;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease, transform 0.1s ease;
+            grid-column: span 2;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(145deg, #ff3333, #b30000);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255, 51, 51, 0.6);
+        }
+
+        .alert-error {
+            background: #ffe5e5;
+            border: 1px solid #ff9b9b;
+            color: #a10000;
+            padding: 12px;
+            border-radius: 8px;
+            grid-column: span 2;
+        }
+
+        .back-button {
+            display: block;
+            background: #fff;
+            border: 2px solid #b30000;
+            color: #b30000;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s;
+            grid-column: span 2;
+        }
+
+        .back-button:hover {
+            background: #b30000;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            button[type="submit"],
+            .alert-error,
+            .back-button,
+            .full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+
     <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -177,7 +186,6 @@
         </div>
 
         <button type="submit">Simpan</button>
-        <a href="{{ route('dashboard') }}" style="display: inline-block; background: #fff ;border: 2px solid #b30000; color: #b30000; padding: 10px 18px; border-radius: 8px;font-weight: bold; text-decoration: none; text-align: center; margin-top: 15px; transition: all 0.3s; width: 300px;">Kembali ke Dashboard</a>
+        <a href="{{ route('dashboard') }}" class="back-button">Kembali ke Dashboard</a>
     </form>
-   
 @endsection
