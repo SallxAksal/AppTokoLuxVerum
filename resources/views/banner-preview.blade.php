@@ -3,7 +3,7 @@
 @section('content')
 <style>
     body {
-        background-color: #1e1e1e;
+        background-color: #000000;
         color: #fdfdfc;
         font-family: 'Inter', sans-serif;
         margin: 0;
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const croppedImageInput = document.getElementById('cropped_image');
 
     const cropper = new Cropper(image, {
-        aspectRatio: 16 / 9,
+        aspectRatio: 2.63 / 1,
         viewMode: 1,        // batasi agar tidak keluar container
         autoCropArea: 1,    // area crop default penuh
         responsive: true,
