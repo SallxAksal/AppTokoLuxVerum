@@ -32,6 +32,18 @@ Route::middleware([\App\Http\Middleware\AdminAuth::class])->group(function () {
 
     // New route for product listing
     Route::get('/products', [DashboardController::class, 'list'])->name('product.list');
+
+    // Route untuk manajemen banner
+    Route::get('/dashboard/banners', [DashboardController::class, 'banners'])->name('banners');
+    Route::post('/dashboard/banners', [DashboardController::class, 'storeBanner'])->name('banners.store');
+
+    // Route untuk preview dan crop banner
+    Route::get('/dashboard/banners/preview', [DashboardController::class, 'previewBanner'])->name('banners.preview');
+    Route::post('/dashboard/banners/preview', [DashboardController::class, 'previewBanner'])->name('banners.preview');
+    Route::post('/dashboard/banners/crop', [DashboardController::class, 'cropBanner'])->name('banners.crop');
+
+    // Route untuk menghapus banner
+    Route::delete('/dashboard/banners/{id}', [DashboardController::class, 'destroyBanner'])->name('banners.destroy');
 });
 
 Route::post('/rate-product', [DashboardController::class, 'rateProduct'])->name('rate.product');

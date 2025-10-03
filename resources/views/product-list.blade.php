@@ -108,7 +108,7 @@
     }
 </style>
 
-<h1 style="text-align: center; background-color:#000000;padding:10px; color:#fff; border-radius:8px;">Daftar Produk</h1>
+<h1 style="text-align: center; background-color:#ff0000;padding:10px; color:#fff; border-radius:8px;">Daftar Produk</h1>
 <div class="product-container">
     @foreach($products as $product)
     <div class="product-card">

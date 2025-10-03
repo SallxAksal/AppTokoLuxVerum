@@ -20,6 +20,7 @@
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('product.list') }}">Daftar Produk</a></li>
                 <li><a href="{{ route('product.create') }}">Tambah Produk Baru</a></li>
+                <li><a href="{{ route('banners') }}">Tambah Banner Iklan</a></li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                         @csrf

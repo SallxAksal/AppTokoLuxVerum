@@ -136,4 +136,84 @@ class DashboardController extends Controller
 
         return response()->json(['message' => 'Rating berhasil dikirim.']);
     }
+
+    // Method untuk menampilkan halaman manajemen banner
+    public function banners()
+    {
+        $banners = \App\Models\Banner::all();
+        return view('banner-management', compact('banners'));
+    }
+
+    // Method untuk menyimpan banner baru
+    public function storeBanner(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|max:2048',
+        ]);
+
+        $path = $request->file('image')->store('banners', 'public');
+
+        \App\Models\Banner::create([
+            'image_path' => $path,
+        ]);
+
+        return redirect()->route('banners')->with('success', 'Banner berhasil ditambahkan.');
+    }
+
+    // Method untuk menampilkan halaman preview banner untuk crop
+    public function previewBanner(Request $request)
+    {
+        if (!$request->hasFile('image')) {
+            return redirect()->route('banners')->withErrors('File gambar tidak ditemukan.');
+        }
+
+        $image = $request->file('image');
+        $imageData = base64_encode(file_get_contents($image->getRealPath()));
+        $imageType = $image->getClientMimeType();
+
+        return view('banner-preview', [
+            'imageData' => $imageData,
+            'imageType' => $imageType,
+        ]);
+    }
+
+    // Method untuk menerima gambar hasil crop dan menyimpannya
+    public function cropBanner(Request $request)
+    {
+        $request->validate([
+            'cropped_image' => 'required|string',
+        ]);
+
+        $croppedImageData = $request->input('cropped_image');
+
+        // Extract base64 data
+        list($type, $croppedImageData) = explode(';', $croppedImageData);
+        list(, $croppedImageData) = explode(',', $croppedImageData);
+
+        $croppedImageData = base64_decode($croppedImageData);
+
+        $fileName = 'banners/cropped_' . time() . '.png';
+        \Storage::disk('public')->put($fileName, $croppedImageData);
+
+        \App\Models\Banner::create([
+            'image_path' => $fileName,
+        ]);
+
+        return redirect()->route('banners')->with('success', 'Banner berhasil ditambahkan setelah crop.');
+    }
+
+    // Method untuk menghapus banner
+    public function destroyBanner($id)
+    {
+        $banner = \App\Models\Banner::findOrFail($id);
+
+        // Hapus file gambar dari storage
+        if ($banner->image_path && \Storage::disk('public')->exists($banner->image_path)) {
+            \Storage::disk('public')->delete($banner->image_path);
+        }
+
+        $banner->delete();
+
+        return redirect()->route('banners')->with('success', 'Banner berhasil dihapus.');
+    }
 }

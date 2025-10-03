@@ -152,7 +152,7 @@
     }
 
     th {
-        background-color: #000000;
+        background-color: #ff0000;
         color: white;
     }
 

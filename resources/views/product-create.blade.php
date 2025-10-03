@@ -17,7 +17,7 @@
     <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #f4f6f9;
+        background: #ffffff;
         margin: 0;
         padding: 0;
     }

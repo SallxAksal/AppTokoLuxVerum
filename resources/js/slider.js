@@ -26,4 +26,24 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
+
+  // Slider banner iklan di katalog dengan pergantian otomatis setiap 3 detik
+  const bannerSliderContainer = document.querySelector('.banner-slider-container');
+  if (bannerSliderContainer) {
+    const bannerSlider = bannerSliderContainer.querySelector('.banner-slider');
+    const banners = bannerSlider ? bannerSlider.children : [];
+    let currentIndex = 0;
+
+    function showBanner(index) {
+      const bannerWidth = bannerSliderContainer.offsetWidth;
+      bannerSlider.style.transform = `translateX(-${index * bannerWidth}px)`;
+    }
+
+    if (banners.length > 1) {
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % banners.length;
+        showBanner(currentIndex);
+      }, 3000);
+    }
+  }
 });
